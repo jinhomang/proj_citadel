@@ -1,0 +1,42 @@
+[Thu Aug 04 16:14:59.333966 2016] [wsgi:error] [pid 16547] [client ::1:62461] mod_wsgi (pid=16547): Exception occurred processing WSGI script '/Users/jinho/Citadel/citadel.wsgi'.
+[Thu Aug 04 16:14:59.334386 2016] [wsgi:error] [pid 16547] [client ::1:62461] Traceback (most recent call last):
+[Thu Aug 04 16:14:59.334442 2016] [wsgi:error] [pid 16547] [client ::1:62461]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 2000, in __call__
+[Thu Aug 04 16:14:59.337463 2016] [wsgi:error] [pid 16547] [client ::1:62461]     return self.wsgi_app(environ, start_response)
+[Thu Aug 04 16:14:59.337515 2016] [wsgi:error] [pid 16547] [client ::1:62461]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1991, in wsgi_app
+[Thu Aug 04 16:14:59.337574 2016] [wsgi:error] [pid 16547] [client ::1:62461]     response = self.make_response(self.handle_exception(e))
+[Thu Aug 04 16:14:59.337591 2016] [wsgi:error] [pid 16547] [client ::1:62461]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1567, in handle_exception
+[Thu Aug 04 16:14:59.337619 2016] [wsgi:error] [pid 16547] [client ::1:62461]     reraise(exc_type, exc_value, tb)
+[Thu Aug 04 16:14:59.337631 2016] [wsgi:error] [pid 16547] [client ::1:62461]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+[Thu Aug 04 16:14:59.337654 2016] [wsgi:error] [pid 16547] [client ::1:62461]     response = self.full_dispatch_request()
+[Thu Aug 04 16:14:59.337668 2016] [wsgi:error] [pid 16547] [client ::1:62461]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+[Thu Aug 04 16:14:59.337689 2016] [wsgi:error] [pid 16547] [client ::1:62461]     rv = self.handle_user_exception(e)
+[Thu Aug 04 16:14:59.337702 2016] [wsgi:error] [pid 16547] [client ::1:62461]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+[Thu Aug 04 16:14:59.337724 2016] [wsgi:error] [pid 16547] [client ::1:62461]     reraise(exc_type, exc_value, tb)
+[Thu Aug 04 16:14:59.337736 2016] [wsgi:error] [pid 16547] [client ::1:62461]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+[Thu Aug 04 16:14:59.337757 2016] [wsgi:error] [pid 16547] [client ::1:62461]     rv = self.dispatch_request()
+[Thu Aug 04 16:14:59.337770 2016] [wsgi:error] [pid 16547] [client ::1:62461]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+[Thu Aug 04 16:14:59.337790 2016] [wsgi:error] [pid 16547] [client ::1:62461]     return self.view_functions[rule.endpoint](**req.view_args)
+[Thu Aug 04 16:14:59.337804 2016] [wsgi:error] [pid 16547] [client ::1:62461]   File "/Users/jinho/Citadel/citadel.py", line 465, in forum
+[Thu Aug 04 16:14:59.338088 2016] [wsgi:error] [pid 16547] [client ::1:62461]     total_rows = len(dbs.query(Thread).all())
+[Thu Aug 04 16:14:59.338128 2016] [wsgi:error] [pid 16547] [client ::1:62461] NameError: global name 'dbs' is not defined
+[Fri Aug 05 11:33:52.977776 2016] [wsgi:error] [pid 16550] [client ::1:63160] mod_wsgi (pid=16550): Exception occurred processing WSGI script '/Users/jinho/Citadel/citadel.wsgi'.
+[Fri Aug 05 11:33:52.978435 2016] [wsgi:error] [pid 16550] [client ::1:63160] Traceback (most recent call last):
+[Fri Aug 05 11:33:52.978479 2016] [wsgi:error] [pid 16550] [client ::1:63160]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 2000, in __call__
+[Fri Aug 05 11:33:53.008474 2016] [wsgi:error] [pid 16550] [client ::1:63160]     return self.wsgi_app(environ, start_response)
+[Fri Aug 05 11:33:53.008583 2016] [wsgi:error] [pid 16550] [client ::1:63160]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1991, in wsgi_app
+[Fri Aug 05 11:33:53.008618 2016] [wsgi:error] [pid 16550] [client ::1:63160]     response = self.make_response(self.handle_exception(e))
+[Fri Aug 05 11:33:53.008628 2016] [wsgi:error] [pid 16550] [client ::1:63160]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1567, in handle_exception
+[Fri Aug 05 11:33:53.008659 2016] [wsgi:error] [pid 16550] [client ::1:63160]     reraise(exc_type, exc_value, tb)
+[Fri Aug 05 11:33:53.008668 2016] [wsgi:error] [pid 16550] [client ::1:63160]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+[Fri Aug 05 11:33:53.008681 2016] [wsgi:error] [pid 16550] [client ::1:63160]     response = self.full_dispatch_request()
+[Fri Aug 05 11:33:53.008689 2016] [wsgi:error] [pid 16550] [client ::1:63160]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+[Fri Aug 05 11:33:53.008702 2016] [wsgi:error] [pid 16550] [client ::1:63160]     rv = self.handle_user_exception(e)
+[Fri Aug 05 11:33:53.008710 2016] [wsgi:error] [pid 16550] [client ::1:63160]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+[Fri Aug 05 11:33:53.008722 2016] [wsgi:error] [pid 16550] [client ::1:63160]     reraise(exc_type, exc_value, tb)
+[Fri Aug 05 11:33:53.008729 2016] [wsgi:error] [pid 16550] [client ::1:63160]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+[Fri Aug 05 11:33:53.008742 2016] [wsgi:error] [pid 16550] [client ::1:63160]     rv = self.dispatch_request()
+[Fri Aug 05 11:33:53.008750 2016] [wsgi:error] [pid 16550] [client ::1:63160]   File "/Users/jinho/Citadel/venv/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+[Fri Aug 05 11:33:53.008762 2016] [wsgi:error] [pid 16550] [client ::1:63160]     return self.view_functions[rule.endpoint](**req.view_args)
+[Fri Aug 05 11:33:53.008770 2016] [wsgi:error] [pid 16550] [client ::1:63160]   File "/Users/jinho/Citadel/citadel.py", line 465, in forum
+[Fri Aug 05 11:33:53.008940 2016] [wsgi:error] [pid 16550] [client ::1:63160]     total_rows = len(dbs.query(Thread).all())
+[Fri Aug 05 11:33:53.008966 2016] [wsgi:error] [pid 16550] [client ::1:63160] NameError: global name 'dbs' is not defined

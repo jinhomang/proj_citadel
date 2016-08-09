@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block nav %}
+<!-- 여기 블럭에 아무 내용도 넣지 않음으로써, layout.html의 네비게이션바가 이 페이지에 추가되지 않도록 함 -->
+{% endblock %}
+
+{% block body %}
+<form action="{{ url_for('join') }}" name="join_form" id = "join_form" class="custom-join-form" method=post>
+  <h3 class="page-header">가입하기<br/><small>시타델 커뮤니티를 경험해 보세요.</small></h3>
+  <dl class="form-group">
+    <dt>
+      <div>
+        <label for="{{ form.user_id.id }}">{{ form.user_id.label }}</label>
+      </div>
+    </dt>
+    <dd>
+      <div>
+        {{ form.user_id(class="form-control", type="email", placeholder="아이디로 사용할 이메일을 입력하세요", autofocus="autofocus") }}
+      </div>
+      {% if form.user_id.errors %}
+        {% for error in form.user_id.errors  %}
+        <div class="error help-block"><li> {{ error }}</li></div>
+        {% endfor %}
+      {% endif %}
+    </dd>
+  </dl>
+
+  <dl class="form-group">
+    <dt>
+      <div>
+        <label for="{{ form.password.id }}">{{ form.password.label }}</label>
+      </div>
+    </dt>
+    <dd>
+      <div>
+        {{ form.password(class="form-control", placeholder="비밀번호는 6글자 이상으로 설정해 주세요") }}
+      </div>
+      {% if form.password.errors %}
+        {% for error in form.password.errors  %}
+          <div class="error help-block"><li> {{ error }}</li></div>
+        {% endfor %}
+      {% endif %}
+    </dd>
+  </dl>
+
+  <dl class="form-group">
+    <dt>
+      <div>
+        <label for="{{ form.confirm.id }}">{{ form.confirm.label }}</label>
+      </div>
+    </dt>
+    <dd>
+      <div>
+        {{ form.confirm(class="form-control", placeholder="비밀번호를 다시 한번 입력해주세요") }}
+      </div>
+      {% if form.confirm.errors %}
+        {% for error in form.confirm.errors  %}
+          <div class="error help-block"><li> {{ error }}</li></div>
+        {% endfor %}
+      {% endif %}
+    </dd>
+  </dl>
+
+  <dl class="form-group">
+    <dt>
+      <div>
+        <label for="{{ form.name.id }}">{{form.name.label }}</label>
+      </div>
+    </dt>
+    <dd>
+      <div>
+        {{ form.name(class="form-control", placeholder="커뮤니티 안에서 사용할 이름을 입력하세요") }}
+      </div>
+      {% if form.name.errors %}
+        {% for error in form.name.errors  %}
+          <div class="error help-block"><li> {{ error }}</li></div>
+        {% endfor %}
+      {% endif %}      
+    </dd>
+  </dl>
+
+  <p class="page-header">아래의 "가입하기" 버튼을 클릭함으로써, 
+  <a href="https://help.github.com/terms" target="_blank">Terms of Service</a>와 
+  <a href="https://help.github.com/privacy" target="_blank">Privacy Policy</a>에 자동으로 동의하게 됩니다.</p>
+
+  {{ form.submit(class="btn btn-sm btn-success btn-block") }}    
+ 
+</form>
+{% endblock %}
+
+{% block script %}
+<script>
+$(document).ready(function(){
+    $('dl.form-group:has(.error)').addClass('has-error');
+    $('.has-error:first input:first').focus();  
+});
+</script>
+{% endblock %}

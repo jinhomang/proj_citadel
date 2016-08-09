@@ -1,0 +1,137 @@
+{% extends "layout.html" %}기
+
+{% import 'macro_editor.html' as macro_editor %}
+{% import 'macro_sh.html' as macro_sh %}
+
+{% block head %}
+	{{ macro_editor.resource() }}
+	{{ fujs.js }}
+{% endblock %}
+
+{% block body %}
+<!-- modal: confirm for deleting message -->
+<div class="modal fade bs-example-modal-sm" id="deleteMessageModal" tabindex="-1" role="dialog" aria-labelledby="modal_delete_message" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">메시지 삭제</h4>
+		</div>
+		<div class="modal-body">
+			한번 삭제하면 더이상 복구할 수 없습니다.<br/>
+			정말로 삭제하시겠습니까?
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			<button type="button" class="btn btn-danger" id="confirm_delete"><span class='glyphicon glyphicon-remove'></span>삭제</button>
+		</div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+	<tr style="background-color: rgb(215, 235, 252);">
+		<td><h3 class="panel-title message-title">{{ thread.title }}</h3></td>
+	</tr>
+	{% for (msg, author, profile) in messages %}
+  	<tr>
+  		<td>
+  			<br/>
+	        <div class="row">
+	        	<div class="col-xs-12 col-md-2">		        		
+	        		<div class="row">
+	        			<div class="col-xs-12 col-md-12">{{ author.name }}</div>
+						<div class="col-xs-5 col-md-12">
+							<div style="height:100px; width:100px;">
+								<img src="{{ profile.picture }}" alt="프로필 사진없음" onerror='this.src="{{ url_for('static', filename="img/avatar_m.png") }}";' class="img-rounded" style="height:100%; width:100%;">	
+							</div>
+						</div>
+						<div class="col-xs-7 col-md-12">
+							<small> 초보 lv.12 <br/> 포인트: {{ author.trophy_point }}<br/> 메시지: {{ author.message_count }}<br/></small>
+						</div>
+					</div>
+	        	</div>
+        		<div class="col-xs-12 col-md-10">
+	            	<div class="row">
+		            	<div class="col-xs-12 col-md-12 message-content">{{ msg.content|safe }}</div>
+		            	<div class="col-xs-7 col-md-8"><small>{{ msg.date }}</small></div>
+		            	<div class="col-xs-5 col-md-4">
+							{% if session.get('user_info') and author.id == session['user_info'].id %}
+							    <span>
+							    	<a href="{{ url_for('update_message', thread_id=thread.id, message_id=msg.id) }}"> 
+							    		<span class='glyphicon glyphicon-edit'></span> 수정 </a>
+							    </span>
+								{% if msg != messages[0][0] %}
+									&nbsp; &nbsp; &nbsp;
+								    <span>
+								    	<button type="button" class="btn btn-link" data-toggle="modal" data-target="#deleteMessageModal" data-message-id="{{ msg.id }}"><span class='glyphicon glyphicon-remove'></span> 삭제</button>
+									</span>
+								{% endif %}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</td>	
+	</tr>
+	{% else %}
+  	<tr><td> 노 메시지.</td></tr>
+	{% endfor %}
+
+	{% if session.user_info %}
+	<tr>
+	<td>
+		<div class="row">
+	        	<div class="col-xs-12 col-md-2">		        		
+	        		<div class="row">
+	        			<div class="col-xs-12 col-md-12"> <b> {{ session.user_info['name'] }} </b> </div>
+						<div class="col-xs-4 col-md-12"> 
+							<div style="height:100px; width:100px;">
+								<img src="{{ profile.picture }}" alt="프로필 사진없음" onerror='this.src="{{ url_for('static', filename="img/avatar_m.png") }}";' class="img-rounded" style="height:100%; width:100%;">
+							</div>
+						</div>
+					</div>
+	        	</div>
+        		<div class="col-xs-12 col-md-10">
+					{{ macro_editor.form(name='add_message_editor', submit_url=url_for('add_message', thread_id=thread.id), submit_label='댓글 입력', submit_icon='glyphicon glyphicon-commentglyphicon glyphicon-comment', hide_cancel=True, initHeight=200) }}
+				</div>
+		</div>
+	</td>
+	</tr>
+	{% endif %}
+</table>
+
+{% if not session.user_info %}
+	<div class="text-right" style="margin: 14px;">		        		
+		<a href="{{ url_for('login') }}" class="btn btn-success" role="button">
+			<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 댓글 달기
+		</a><br/><br/>
+	</div>
+{% endif %}
+
+<a href="#"><u>페이지 맨 위로</u></a>
+{% endblock %}
+
+
+
+
+
+{% block script %}
+	{{ macro_sh.loadSyntaxHighlighter() }}
+	<script>
+	$(document).ready(function(){
+		$('#deleteMessageModal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+			var messageId = button.data('message-id') // Extract info from data-* attributes
+			var modal = $(this)
+
+			modal.find('#confirm_delete').on('click', function(){ 
+				var url = flask_util.url_for('delete_message', {thread_id: {{ thread.id }}, message_id: messageId });
+				$(location).attr('href', url);
+				});
+		});
+	});
+	</script>
+{% endblock %}
+	
+
