@@ -1,2 +1,2 @@
-web: gunicorn citadel.wsgi
+web: gunicorn mytest.wsgi
 
