@@ -63,7 +63,7 @@ class Message(Base):
 
     __table_args__ = {'mysql_charset': 'utf8', 'mysql_engine': 'InnoDB'}
 
-engine = create_engine('mysql://root:jh781208@localhost/citadel', echo=True)
+#engine = create_engine('mysql://root:jh781208@localhost/citadel', echo=True)
 #engine = create_engine('sqlite:///citadel_data.db')
-Base.metadata.create_all(engine)
+#Base.metadata.create_all(engine)
 

@@ -20,7 +20,9 @@ DEBUG = True
 SECRET_KEY = 'development key'
 
 # db ####################################################################################
-engine = create_engine('mysql://root:jh781208@localhost/citadel?charset=utf8&use_unicode=0')
+#engine = create_engine('mysql://root:jh781208@localhost/citadel?charset=utf8&use_unicode=0')
+engine = create_engine('mysql://b337b787ca5f9b:760f6794@us-cdbr-iron-east-04.cleardb.net/heroku_5e3032b59db1b2b?reconnect=true')
+
 Base.metadata.bind = engine
 
 DBsession = sessionmaker(bind=engine)
