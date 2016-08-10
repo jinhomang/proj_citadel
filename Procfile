@@ -1,2 +1,2 @@
-web: gunicorn mytest.wsgi
+web: gunicorn mytest:app
 
